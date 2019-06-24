@@ -1,9 +1,11 @@
 class Api::BoardsController < ApplicationController
+  # GET api/boards
   def index
     @boards = Board.all
     render :index
   end
 
+  # POST api/boards
   def create
     @board = Board.new(board_params)
 
