@@ -6,7 +6,6 @@ class CreateCards < ActiveRecord::Migration[5.1]
       t.string :labels, array: true, default: [], nil: false
       t.text :description
       t.integer :list_id
-      t.integer :comments_count
     end
   end
 end
