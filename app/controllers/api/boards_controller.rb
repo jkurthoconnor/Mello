@@ -5,6 +5,8 @@ class Api::BoardsController < ApplicationController
     render :index
   end
 
+  # GET api/boards/:id  api/boards#show
+
   # POST api/boards
   def create
     @board = Board.new(board_params)
