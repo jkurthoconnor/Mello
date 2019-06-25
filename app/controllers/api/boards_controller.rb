@@ -7,7 +7,16 @@ class Api::BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
-    
+
+    if @board
+      render :show
+    else
+      @error = @board.errors.full_messages.join(', ')
+      render 'api/shared/error', status: :unprocessable_entity
+    end
+    rescue ActiveRecord::RecordNotFound
+    @error = "Invalid board id"
+    render 'api/shared/error', status: :unprocessable_entity
   end
   # GET api/boards/:id  api/boards#show
 

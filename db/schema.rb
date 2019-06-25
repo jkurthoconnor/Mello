@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20190625172251) do
     t.string "labels", default: [], array: true
     t.text "description"
     t.integer "list_id"
-    t.integer "board_id"
     t.integer "comments_count"
   end
 
