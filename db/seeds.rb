@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Board.destroy_all
+Board.create(title: "NEW Items")
+Board.create(title: "More things")
+Board.create(title: "Project todos")
+Board.create(title: "Another board")
