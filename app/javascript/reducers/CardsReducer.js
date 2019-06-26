@@ -1,4 +1,5 @@
 export default function cardsReducer(state = [], action) {
+
   if (action.type === 'FETCH_BOARD_SUCCESS') {
     const lists = action.board.lists;
     let cards = [];
