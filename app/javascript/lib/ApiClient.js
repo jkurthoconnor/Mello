@@ -25,6 +25,15 @@ const apiClient = {
       .then(callback)
       .catch(logError);
   },
+
+  getSingleBoard: function(id, callback) {
+    return axios.get(`/api/boards/${id}`)
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  },
+
+
   createBoard: function(board, callback) {
     return axios.post(routes.CREATE_BOARD_URL, { board })
       .then(unwrapData)
