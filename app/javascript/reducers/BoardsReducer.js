@@ -10,7 +10,7 @@ export default function boardsReducer(state = [], action) {
     const excludedBoards = state.filter(board => board.id !== action.board.id);
     const { lists, ...newBoardWithoutLists } = action.board;
 
-    return excludedBoards.concat(newBoardWithoutLists);
+   return excludedBoards.concat(newBoardWithoutLists);
   } else {
     return state;
   }

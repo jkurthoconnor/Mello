@@ -13,7 +13,7 @@ class BoardContainer extends React.Component {
   componentDidMount() {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
-    
+
     const boardId = +this.props.match.params.id;
     console.log(boardId);
     store.dispatch(actions.fetchSingleBoard(boardId));
