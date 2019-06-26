@@ -5,16 +5,16 @@ export function fetchBoardsRequest() {
   return { type: types.FETCH_BOARDS_REQUEST };
 }
 
+export function fetchBoardsSuccess(boards) {
+  return { type: types.FETCH_BOARDS_SUCCESS, boards };
+}
+
 export function fetchBoardRequest() {
   return { type: 'FETCH_BOARD_REQUEST' };
 }
 
 export function fetchBoardSuccess(board) {
   return { type: 'FETCH_BOARD_SUCCESS', board };
-}
-
-export function fetchBoardsSuccess(boards) {
-  return { type: types.FETCH_BOARDS_SUCCESS, boards };
 }
 
 export function createBoardRequest() {
