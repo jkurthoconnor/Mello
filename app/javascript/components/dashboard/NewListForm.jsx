@@ -1,18 +1,35 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const NewListForm = (props) => {
-  let classes = "new-list"
+  let classes = "new-list";
 
-  if (props.opened) {
-    classes = classes + ' selected'
+  if (props.formOpened) {
+    classes = classes + ' selected';
   }
   return (
-        <div id="new-list" className={classes} onClick={props.onTitleChange}><span>Add a list...</span>
-            <input type="text" placeholder="Add a list..." />
-            <div>
-                <input type="submit" className="button" value="Save" /><i className="x-icon icon"></i>
-            </div>
+        <div 
+          id="new-list" 
+          className={classes} 
+          onClick={props.onTitleClick}
+        ><span>Add a list...</span>
+          <input 
+            type="text" 
+            placeholder="Add a list..." 
+            value={props.title}
+            onChange={props.onTitleChange}
+          />
+          <div>
+              <input 
+                type="submit" 
+                className="button" 
+                value="Save" 
+                onClick={props.onSubmitClick}
+              />
+              <i 
+                className="x-icon icon"
+                onClick={props.onCloseClick}
+              ></i>
+          </div>
         </div>
   )
 }

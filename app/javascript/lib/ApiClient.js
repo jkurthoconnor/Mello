@@ -39,7 +39,14 @@ const apiClient = {
       .then(unwrapData)
       .then(callback)
       .catch(logError);
-  }
+  },
+
+  createList: function(boardId, list, callback) {
+    return axios.post('/api/lists', { board_id: boardId, list: list })
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  },
 };
 
 export default apiClient;

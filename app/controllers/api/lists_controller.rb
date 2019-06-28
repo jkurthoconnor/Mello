@@ -13,7 +13,7 @@ class Api::ListsController < ApplicationController
 
   rescue ActionController::ParameterMissing
     @error = "Invalid board data provided"
-    render 'api/shared/error', status: 404
+    render 'api/shared/error', status: :unprocessable_entity
   end
 
   #PUT/PATCH api/lists/:id
@@ -22,12 +22,11 @@ class Api::ListsController < ApplicationController
     @list.title = params[:title]
 
     @list.save
-    render :update, status: :updated
+    render :update, status: 202
 
-    rescue ActionController::ParameterMissing
+    rescue ActiveRecord::RecordNotFound
       @error = "Invalid list id provided"
-      render 'api/shared/error', status: :unprocessable_entity
-    end
+      render 'api/shared/error', status: :not_found
 
   end
 

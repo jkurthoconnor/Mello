@@ -6,16 +6,16 @@ const ExistingList = (props) => {
     const lists = props.lists.map(list => {
         return (
             <ListWrapper
-            key={list.id}
-            list={list}
+                key={list.id}
+                list={list}
             />
         )
     })
 
     return (
-        <div id="existing-lists" className="existing-lists">
-            {lists}
-        </div>
+      <div id="existing-lists" className="existing-lists">
+        {lists}
+      </div>
     )
 }
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ExistingList from './ExistingList.jsx'
-import NewListForm from './NewListForm.jsx'
+import NewListFormContainer from './NewListFormContainer.jsx'
 
-class ListContainer extends React.Component {
+class ListsContainer extends React.Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
@@ -13,12 +13,14 @@ class ListContainer extends React.Component {
 
     return (
      <div id="list-container" className="list-container">
-        <ExistingList
-        lists={lists} />
-        <NewListForm />
+       <ExistingList
+         lists={lists} />
+       <NewListFormContainer 
+        boardId={this.props.boardId}
+       />
     </div>
     )
   }
 }
 
-export default ListContainer;
+export default ListsContainer;
