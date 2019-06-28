@@ -11,6 +11,12 @@ class ListWrapper extends React.Component {
     store: PropTypes.object.isRequired
   };
 
+  handleOnClick = () => {
+    this.setState({
+        editing: true,
+    })
+  }
+
   render() {
     return (
                 <div className="list-wrapper">
@@ -22,7 +28,7 @@ class ListWrapper extends React.Component {
 
                             <p 
                                 className="list-title"
-                                
+                                onClick={this.handleOnClick}
                             >
                             {this.state.title}
                 
@@ -34,7 +40,7 @@ class ListWrapper extends React.Component {
                                 type="text" 
                                 className="list-title" 
                                 value={this.state.title} 
-                                autofocus="true"
+                                onChange={this.handleOnChange}
                                 
                             />
 
