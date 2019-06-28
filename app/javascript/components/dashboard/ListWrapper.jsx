@@ -1,13 +1,47 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const ListWrapper = (props) => {
-  return (
+class ListWrapper extends React.Component {
+  state = {
+    title: this.props.list.title,
+    editing: false
+  }
+
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
+
+  render() {
+    return (
                 <div className="list-wrapper">
                 <div className="list-background">
                     <div className="list">
                         <a className="more-icon sm-icon" href=""></a>
                         <div>
-                            <p className="list-title">{props.list.title}</p>
+                            {!this.state.editing ? 
+
+                            <p 
+                                className="list-title"
+                                
+                            >
+                            {this.state.title}
+                
+                            </p>
+
+                            :
+
+                            <input 
+                                type="text" 
+                                className="list-title" 
+                                value={this.state.title} 
+                                autofocus="true"
+                                
+                            />
+
+                            }
+
+                        
+                            
                         </div>
                         <div className="add-dropdown add-top">
                             <div className="card"></div><a className="button">Add</a><i className="x-icon icon"></i>
@@ -61,7 +95,8 @@ const ListWrapper = (props) => {
                     </div>
                 </div>
             </div>
-          )
+          )  
+  }
 }
 
 export default ListWrapper
