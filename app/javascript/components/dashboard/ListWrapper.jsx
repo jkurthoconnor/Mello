@@ -17,6 +17,12 @@ class ListWrapper extends React.Component {
     })
   }
 
+  handleOnChange = (e) => {
+    this.setState({
+      title: e.target.value,
+    });
+  }
+
   render() {
     return (
                 <div className="list-wrapper">
@@ -41,7 +47,7 @@ class ListWrapper extends React.Component {
                                 className="list-title" 
                                 value={this.state.title} 
                                 onChange={this.handleOnChange}
-                                
+                                onBlur={this.handleOnBlur}
                             />
 
                             }
