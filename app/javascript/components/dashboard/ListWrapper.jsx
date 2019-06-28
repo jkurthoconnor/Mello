@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import * as actions from '../../actions/BoardActions';
 
 class ListWrapper extends React.Component {
   state = {
@@ -21,6 +22,16 @@ class ListWrapper extends React.Component {
     this.setState({
       title: e.target.value,
     });
+  }
+
+  handleOnBlur = () => {
+    const store = this.context.store;
+
+    store.dispatch(actions.updateListTitle(this.props.list.id, this.state.title, () => {
+      this.setState({
+        editing: false,
+      })
+    }));
   }
 
   render() {
