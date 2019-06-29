@@ -26,14 +26,6 @@ const apiClient = {
       .catch(logError);
   },
 
-  getSingleBoard: function(id, callback) {
-    return axios.get(`/api/boards/${id}`)
-      .then(unwrapData)
-      .then(callback)
-      .catch(logError);
-  },
-
-
   createBoard: function(board, callback) {
     return axios.post(routes.CREATE_BOARD_URL, { board })
       .then(unwrapData)
@@ -41,15 +33,22 @@ const apiClient = {
       .catch(logError);
   },
 
+  getSingleBoard: function(id, callback) {
+    return axios.get(routes.SHOW_BOARD_URL.concat(id))
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  },
+
   createList: function(boardId, list, callback) {
-    return axios.post('/api/lists', { board_id: boardId, list: list })
+    return axios.post(routes.CREATE_LIST_URL, { board_id: boardId, list: list })
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
 
   updateListTitle: function(listId, title, callback) {
-    return axios.put(`/api/lists/${listId}`, { title: title })
+    return axios.put(routes.UPDATE_LIST_URL.concat(listId), { title: title })
       .then(unwrapData)
       .then(callback)
       .catch(logError);
