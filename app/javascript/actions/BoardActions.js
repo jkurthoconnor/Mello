@@ -10,11 +10,11 @@ export function fetchBoardsSuccess(boards) {
 }
 
 export function fetchBoardRequest() {
-  return { type: 'FETCH_BOARD_REQUEST' };
+  return { type: types.FETCH_BOARD_REQUEST };
 }
 
 export function fetchBoardSuccess(board) {
-  return { type: 'FETCH_BOARD_SUCCESS', board };
+  return { type: types.FETCH_BOARD_SUCCESS, board };
 }
 
 export function createBoardRequest() {
@@ -26,13 +26,12 @@ export function createBoardSuccess(board) {
 }
 
 export function createListSuccess(list) {
-  return { type: 'CREATE_LIST_SUCCESS', list: list };
+  return { type: types.CREATE_LIST_SUCCESS, list: list };
 }
 
 export function updateListSuccess(list) {
-  return { type: 'UPDATE_LIST_SUCCESS', list: list };
+  return { type: types.UPDATE_LIST_SUCCESS, list: list };
 }
-
 
 export function fetchBoards() {
   return function(dispatch) {
