@@ -6,7 +6,7 @@ class Api::CardsController < ApplicationController
     @error = "Invalid card id"
     render 'api/shared/error', status: :not_found    
   end
-     
+
   def create
     @list = List.find(params[:list_id])
     @card = Card.new(card_params.merge({list: @list}))

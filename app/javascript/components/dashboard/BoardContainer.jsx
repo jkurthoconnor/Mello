@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Board from './Board';
-
 import * as actions from '../../actions/BoardActions';
 
 class BoardContainer extends React.Component {
