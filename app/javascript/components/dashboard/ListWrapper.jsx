@@ -2,19 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions/BoardActions';
 
+import ToggleableAddCard from './ToggleableAddCard';
+
 class ListWrapper extends React.Component {
   state = {
     title: this.props.list.title,
     editing: false,
+    addCardFormOpen: false,
   };
 
   static contextTypes = {
     store: PropTypes.object.isRequired,
   };
 
+  handleAddCardClick = () => {
+    this.setState({
+      addCardFormOpen: true,
+    });
+  };
+
   handleOnClick = () => {
     this.setState({
       editing: true,
+    });
+  };
+
+  handleAddFormClose = () => {
+    this.setState({
+      addCardFormOpen: false,
     });
   };
 
@@ -37,8 +52,14 @@ class ListWrapper extends React.Component {
   };
 
   render() {
+    let classList = 'list-wrapper';
+
+    if (this.state.addCardFormOpen) {
+      classList += ' add-dropdown-active';
+    }
+
     return (
-      <div className="list-wrapper">
+      <div className={classList}>
         <div className="list-background">
           <div className="list">
             <a className="more-icon sm-icon" href=""></a>
@@ -116,21 +137,11 @@ class ListWrapper extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="add-dropdown add-bottom">
-              <div className="card">
-                <div className="card-info"></div>
-                <textarea name="add-card"></textarea>
-                <div className="members"></div>
-              </div>
-              <a className="button">Add</a>
-              <i className="x-icon icon"></i>
-              <div className="add-options">
-                <span>...</span>
-              </div>
-            </div>
-            <div className="add-card-toggle" data-position="bottom">
-              Add a card...
-            </div>
+            <ToggleableAddCard
+              onAddCardClick={this.handleAddCardClick}
+              formOpen={this.state.addCardFormOpen}
+              onAddFormClose={this.handleAddFormClose}
+            />
           </div>
         </div>
       </div>
