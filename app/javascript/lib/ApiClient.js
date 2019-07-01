@@ -7,7 +7,7 @@ function logError(errorResponse) {
   if (response && response.data && response.data.error) {
     console.error(`HTTP Error: ${response.data.error}`);
   } else {
-    console.error("Error: ", errorResponse);
+    console.error('Error: ', errorResponse);
   }
 }
 
@@ -20,35 +20,48 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 
 const apiClient = {
   getBoards: function(callback) {
-    return axios.get(routes.BOARDS_INDEX_URL)
+    return axios
+      .get(routes.BOARDS_INDEX_URL)
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
 
   createBoard: function(board, callback) {
-    return axios.post(routes.CREATE_BOARD_URL, { board })
+    return axios
+      .post(routes.CREATE_BOARD_URL, {board})
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
 
   getSingleBoard: function(id, callback) {
-    return axios.get(routes.SHOW_BOARD_URL.concat(id))
+    return axios
+      .get(routes.SHOW_BOARD_URL.concat(id))
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
 
   createList: function(boardId, list, callback) {
-    return axios.post(routes.CREATE_LIST_URL, { board_id: boardId, list: list })
+    return axios
+      .post(routes.CREATE_LIST_URL, {board_id: boardId, list: list})
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
 
   updateListTitle: function(listId, title, callback) {
-    return axios.put(routes.UPDATE_LIST_URL.concat(listId), { title: title })
+    return axios
+      .put(routes.UPDATE_LIST_URL.concat(listId), {title: title})
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  },
+
+  createCard: function(listId, card, callback) {
+    return axios
+      .post('/api/cards', {list_id: listId, card: card})
       .then(unwrapData)
       .then(callback)
       .catch(logError);

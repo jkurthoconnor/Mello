@@ -141,6 +141,7 @@ class ListWrapper extends React.Component {
               onAddCardClick={this.handleAddCardClick}
               formOpen={this.state.addCardFormOpen}
               onAddFormClose={this.handleAddFormClose}
+              listId={this.props.list.id}
             />
           </div>
         </div>
