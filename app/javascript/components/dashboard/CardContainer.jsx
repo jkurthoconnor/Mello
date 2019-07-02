@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CardContainer = (props) => {
+    const card = props.card
+
     return (
          <div id="modal-container">
           <div className="screen"></div>
