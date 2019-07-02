@@ -34,7 +34,7 @@ export function updateListSuccess(list) {
 }
 
 export function createCardSuccess(card) {
-  return {type: 'CREATE_CARD_SUCCESS', card: card};
+  return {type: types.CREATE_CARD_SUCCESS, card: card};
 }
 
 export function fetchBoards() {
