@@ -12,7 +12,6 @@ class ListCardsContainer extends React.Component {
   render() {
     let cards = this.context.store.getState().cards.filter(card => card.list_id === this.props.listId);
 
-    console.log(cards)
     cards = cards.map(card => <ListCard key={card.id} card={card} />);
 
     const dataId = `list-${this.props.listId}-cards`;

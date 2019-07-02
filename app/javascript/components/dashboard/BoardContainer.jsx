@@ -25,8 +25,18 @@ class BoardContainer extends React.Component {
 
   render() {
     const store = this.context.store;
-    const id = +this.props.match.params.id;
-    const board = store.getState().boards.find( (board) => board.id === id);
+    const regex = new RegExp('^/board')
+    let boardId;
+    let cardId;
+
+    if (this.props.match.url.match(regex)){
+      boardId = +this.props.match.params.id;
+    } else {
+      cardId = +this.props.match.params.id
+      boardId = +store.getState().cards.find(card => card.id === cardId).board_id
+    }
+
+    const board = store.getState().boards.find( (board) => board.id === boardId);
     return (
       <Board board={board} />
     )

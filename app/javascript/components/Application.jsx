@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import TopNav from './shared/TopNav';
 import BoardsDashboardContainer from './dashboard/BoardsDashboardContainer';
 import BoardContainer from './dashboard/BoardContainer';
+import CardContainer from './dashboard/CardContainer.jsx'
 
 class Application extends React.Component {
   render() {
