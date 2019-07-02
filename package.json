@@ -41,8 +41,8 @@
     "prettier": "^1.18.2",
     "prop-types": "^15.5.10",
     "rails-erb-loader": "^5.1.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-test-renderer": "^15.6.1",
@@ -64,8 +64,6 @@
     "lint": "eslint app/javascript/**/* --color"
   },
   "jest": {
-    "roots": [
-      "./app/javascript"
-    ]
+    "roots": ["./app/javascript"]
   }
 }

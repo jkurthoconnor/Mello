@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListsContainer from './ListsContainer'
+import ListsContainer from './ListsContainer';
 
 const Board = props => {
   return (
@@ -12,17 +12,17 @@ const Board = props => {
           <li className="private private-icon icon">Private</li>
         </ul>
         <div className="menu">
-          <i className="more-icon sm-icon"></i>Show Menu</div>
+          <i className="more-icon sm-icon"></i>Show Menu
+        </div>
         <div className="subscribed">
-          <i className="sub-icon sm-icon"></i>Subscribed</div>
+          <i className="sub-icon sm-icon"></i>Subscribed
+        </div>
       </header>
       <main>
-        <ListsContainer
-          boardId={props.board.id}
-        />
+        <ListsContainer boardId={props.board.id} />
       </main>
     </div>
-  )
-}
+  );
+};
 
 export default Board;
