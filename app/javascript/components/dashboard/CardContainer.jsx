@@ -63,7 +63,7 @@ const CardContainer = (props) => {
                     </div>
                     <div className="comment">
                       <label>
-                        <textarea required="" rows="1" placeholder="Write a comment..." />
+                        <textarea required="" rows="1" placeholder="Write a comment..." value=""/>
                         <div>
                           <a className="light-button card-icon sm-icon"></a>
                           <a className="light-button smiley-icon sm-icon"></a>

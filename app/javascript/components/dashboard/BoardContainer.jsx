@@ -13,7 +13,7 @@ class BoardContainer extends React.Component {
     const store = this.context.store;
     this.unsubscribe = store.subscribe(() => this.forceUpdate());
 
-    const boardId = +this.props.match.params.id;
+    const boardId = this.getBoardId()
 
     store.dispatch(actions.fetchSingleBoard(boardId));
   }
@@ -22,12 +22,11 @@ class BoardContainer extends React.Component {
     this.unsubscribe();
   }
 
-
-  render() {
-    const store = this.context.store;
-    const regex = new RegExp('^/board')
+  getBoardId(){
     let boardId;
     let cardId;
+    const regex = new RegExp('^/board')
+    const store = this.context.store;
 
     if (this.props.match.url.match(regex)){
       boardId = +this.props.match.params.id;
@@ -35,6 +34,13 @@ class BoardContainer extends React.Component {
       cardId = +this.props.match.params.id
       boardId = +store.getState().cards.find(card => card.id === cardId).board_id
     }
+    return boardId
+  }
+
+
+  render() {
+    const store = this.context.store;
+    const boardId = this.getBoardId()
 
     const board = store.getState().boards.find( (board) => board.id === boardId);
     return (
