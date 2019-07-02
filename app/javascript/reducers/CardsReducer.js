@@ -4,7 +4,7 @@ export default function cardsReducer(state = [], action) {
     let cards = [];
 
     lists.forEach(list => {
-      cards.concat(...list.cards);
+      cards = cards.concat(...list.cards);
     });
 
     return cards;
