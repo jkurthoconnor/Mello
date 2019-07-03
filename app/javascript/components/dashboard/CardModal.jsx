@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 class CardModal extends React.Component {
+  state = {
+    title: this.props.card.title
+  };
+
   dueDate() {
     const card = this.props.card;
     const dateClass = this.getDateClass(card);
@@ -17,7 +21,7 @@ class CardModal extends React.Component {
   getDateClass(card) {
     const diff =
       (moment(card.due_date).toDate() - new Date()) / (1000 * 60 * 60 * 24);
-    console.log(diff);
+
     if (card.completed) {
       return "completed";
     } else if (diff < -1) {
@@ -48,6 +52,12 @@ class CardModal extends React.Component {
     }
   }
 
+  handleOnTitleChange = e => {
+    this.setState({
+      title: e.target.value
+    });
+  };
+
   render() {
     const card = this.props.card;
     const dueDateClass = this.getDateClass(card);
@@ -69,7 +79,8 @@ class CardModal extends React.Component {
             <textarea
               className="list-title"
               style={{ height: 45 + "px" }}
-              value={card.title}
+              value={this.state.title}
+              onChange={this.handleOnTitleChange}
             />
             <p>
               in list <a className="link">{this.props.list.title}</a>
