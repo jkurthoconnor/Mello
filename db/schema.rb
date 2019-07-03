@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20190702184710) do
     t.string "labels", default: [], array: true
     t.text "description"
     t.integer "list_id"
+    t.integer "comments_count"
   end
 
   create_table "comments", force: :cascade do |t|
