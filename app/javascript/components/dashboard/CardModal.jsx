@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CardModal = props => (
   <div id="modal-container">
     <div className="screen"></div>
     <div id="modal">
-      <i className="x-icon icon close-modal"></i>
+      <Link to={`/boards/${props.boardId}`}>
+        <i className="x-icon icon close-modal"></i>
+      </Link>
       <header>
         <i className="card-icon icon .close-modal"></i>
         <textarea
@@ -13,7 +16,7 @@ const CardModal = props => (
           value={props.card.title}
         />
         <p>
-          in list <a className="link">Stuff to try (this is a list)</a>
+          in list <a className="link">{props.list.title}</a>
           <i className="sub-icon sm-icon"></i>
         </p>
       </header>

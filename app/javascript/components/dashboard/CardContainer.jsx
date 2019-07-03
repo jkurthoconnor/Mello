@@ -12,7 +12,9 @@ class CardContainer extends React.Component {
     const card = store
       .getState()
       .cards.find(card => card.id === +this.props.match.params.id);
-    return <CardModal card={card} />;
+    const list = store.getState().lists.find(list => list.id === card.list_id);
+
+    return <CardModal card={card} list={list} boardId={list.board_id} />;
   }
 }
 
