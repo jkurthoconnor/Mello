@@ -8,6 +8,19 @@ class Api::CardsController < ApplicationController
     render 'api/shared/error', status: :not_found    
   end
 
+  def update
+    @card = Card.find(params[:id])
+    @card.assign_attributes(card_params)
+
+
+    @card.save
+    render :update, status: 202
+
+    rescue ActiveRecord::RecordNotFound
+      @error = "Invalid card id provided"
+      render 'api/shared/error', status: :not_found
+  end
+
   def create
     @list = List.find(params[:list_id])
     @card = Card.new(card_params.merge({list: @list}))
@@ -28,6 +41,6 @@ class Api::CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:title)
+    params.require(:card).permit(:title, :list_id, :description, :archived, :due_date, :completed, labels: [])
   end
 end
