@@ -1,46 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
+import CardModal from "./CardModal";
 
-const CardContainer = (props) => {
-    return (
-        <div id="cards-container" data-id="list-1-cards">
-                            <div className="card-background">
-                                <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
-                                    <div className="card-info">
-                                        <div className="card-label green colorblindable">
-                                        </div><div className="card-label yellow colorblindable">
-                                        </div><div className="card-label red colorblindable">
-                                        </div><div className="card-label orange colorblindable">
-                                        </div><div className="card-label blue colorblindable">
-                                        </div><div className="card-label purple colorblindable">
-                                        </div>
-                                        <p>Cards do many cool things. Click on this card to open it and learn more...</p>
-                                    </div>
-                                    <div className="card-icons"><i className="clock-icon sm-icon overdue-recent completed">Aug 4</i><i className="description-icon sm-icon"></i><i className="comment-icon sm-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card-background">
-                                <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
-                                    <div className="cover-image"></div>
-                                    <div className="card-info">
-                                        <p>Another list with stuff</p>
-                                    </div>
-                                    <div className="card-icons"><i className="clock-icon sm-icon overdue ">Aug 3</i><i className="description-icon sm-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card-background">
-                                <div className="card "><i className="edit-toggle edit-icon sm-icon"></i>
-                                    <div className="cover-image"></div>
-                                    <div className="card-info">
-                                        <p>Use the + in the top menu to make your first board now.</p>
-                                    </div>
-                                    <div className="card-icons"></div>
-                                </div>
-                            </div>
-                        </div>
-    )
+class CardContainer extends React.Component {
+  static contextTypes = {
+    store: PropTypes.object.isRequired
+  };
+
+  render() {
+    const store = this.context.store;
+    const card = store
+      .getState()
+      .cards.find(card => card.id === +this.props.match.params.id);
+    const list = store.getState().lists.find(list => list.id === card.list_id);
+
+    return <CardModal card={card} list={list} boardId={list.board_id} />;
+  }
 }
 
-export default CardContainer
+export default CardContainer;
