@@ -26,4 +26,4 @@ card3 = Card.create(title: "card_3", list: list2, labels: ['blue'], due_date: 8.
 card4 = Card.create(title: "card_4", list: list2, labels: ['red', 'yellow'], due_date: 8.days.from_now)
 card5 = Card.create(title: "card_5", list: list2, labels: ['blue', 'yellow', 'purple'], due_date: 4.days.from_now)
 
-comment1 = Comment.create(text: "This is a comment", card_id: card1.id)
+comment1 = Comment.create(text: "This is a comment", card: card1)

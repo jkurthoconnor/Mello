@@ -12,7 +12,7 @@ class ListCard extends React.Component {
 
   hasComments() {
     const count = this.props.card.comments_count;
-    return count !== null;
+    return count > 0;
   }
 
   dueDate() {

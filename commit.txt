@@ -1,4 +1,4 @@
-git commit -m “Added labels, comments description icons to listcard \
+git commit -m "Added labels, comments description icons to listcard
 
 
 Co-authored-by: Faazil Shaikh <faazil.shaikh@gmail.com>
