@@ -1,9 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 class CardModal extends React.Component {
+  dueDate() {
+    const card = this.props.card;
+    const dateClass = this.getDateClass(card);
+    //console.log(dateClass);
+    return card.due_date ? (
+      <i className={"clock-icon sm-icon " + dateClass}>
+        {moment(this.props.card.due_date).format("MMM D")}
+      </i>
+    ) : null;
+  }
+
+  getDateClass(card) {
+    const diff =
+      (moment(card.due_date).toDate() - new Date()) / (1000 * 60 * 60 * 24);
+    console.log(diff);
+    if (card.completed) {
+      return "completed";
+    } else if (diff < -1) {
+      return "overdue";
+    } else if (diff < 0) {
+      return "overdue-recent";
+    } else if (diff < 1) {
+      return "due-soon";
+    } else {
+      return "due-later";
+    }
+  }
+
+  dueDateStatus() {
+    const card = this.props.card;
+    const diff =
+      (moment(card.due_date).toDate() - new Date()) / (1000 * 60 * 60 * 24);
+    if (card.completed) {
+      return "";
+    } else if (diff < -1) {
+      return "(past due)";
+    } else if (diff < 0) {
+      return "(recently past due)";
+    } else if (diff < 1) {
+      return "(due soon)";
+    } else {
+      return "";
+    }
+  }
+
   render() {
     const card = this.props.card;
+    const dueDateClass = this.getDateClass(card);
     const labels = this.props.card.labels.map(label => (
       <div className="member-container">
         <div className={`${label} label colorblindable`}></div>
@@ -42,14 +89,14 @@ class CardModal extends React.Component {
                   </li>
                   <li className="due-date-section">
                     <h3>Due Date</h3>
-                    <div id="dueDateDisplay" className="overdue completed">
+                    <div id="dueDateDisplay" className={dueDateClass}>
                       <input
                         id="dueDateCheckbox"
                         type="checkbox"
                         className="checkbox"
                         checked=""
                       />
-                      Aug 4 at 10:42 AM <span>(past due)</span>
+                      {card.due_date} <span>{this.dueDateStatus()}</span>
                     </div>
                   </li>
                 </ul>
