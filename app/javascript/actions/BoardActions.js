@@ -1,40 +1,44 @@
-import apiClient from '../lib/ApiClient';
-import * as types from '../constants/ActionTypes';
+import apiClient from "../lib/ApiClient";
+import * as types from "../constants/ActionTypes";
 
 export function fetchBoardsRequest() {
-  return {type: types.FETCH_BOARDS_REQUEST};
+  return { type: types.FETCH_BOARDS_REQUEST };
 }
 
 export function fetchBoardsSuccess(boards) {
-  return {type: types.FETCH_BOARDS_SUCCESS, boards};
+  return { type: types.FETCH_BOARDS_SUCCESS, boards };
 }
 
 export function fetchBoardRequest() {
-  return {type: types.FETCH_BOARD_REQUEST};
+  return { type: types.FETCH_BOARD_REQUEST };
 }
 
 export function fetchBoardSuccess(board) {
-  return {type: types.FETCH_BOARD_SUCCESS, board};
+  return { type: types.FETCH_BOARD_SUCCESS, board };
 }
 
 export function createBoardRequest() {
-  return {type: types.CREATE_BOARD_REQUEST};
+  return { type: types.CREATE_BOARD_REQUEST };
 }
 
 export function createBoardSuccess(board) {
-  return {type: types.CREATE_BOARD_SUCCESS, board: board};
+  return { type: types.CREATE_BOARD_SUCCESS, board: board };
 }
 
 export function createListSuccess(list) {
-  return {type: types.CREATE_LIST_SUCCESS, list: list};
+  return { type: types.CREATE_LIST_SUCCESS, list: list };
 }
 
 export function updateListSuccess(list) {
-  return {type: types.UPDATE_LIST_SUCCESS, list: list};
+  return { type: types.UPDATE_LIST_SUCCESS, list: list };
 }
 
 export function createCardSuccess(card) {
-  return {type: types.CREATE_CARD_SUCCESS, card: card};
+  return { type: types.CREATE_CARD_SUCCESS, card: card };
+}
+
+export function updateCardSuccess(card) {
+  return { type: "UPDATE_CARD_SUCCESS", card: card };
 }
 
 export function fetchBoards() {
@@ -101,6 +105,14 @@ export function createCard(listId, card, callback) {
       if (callback) {
         callback(newCard);
       }
+    });
+  };
+}
+
+export function updateCard(cardId, attributes) {
+  return function(dispatch) {
+    apiClient.updateCard(cardId, attributes, updatedCard => {
+      dispatch(updateCardSuccess(updatedCard));
     });
   };
 }

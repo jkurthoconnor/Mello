@@ -58,6 +58,10 @@ class CardModal extends React.Component {
     });
   };
 
+  handleOnBlur = () => {
+    this.props.onUpdateCard({ title: this.state.title });
+  };
+
   render() {
     const card = this.props.card;
     const dueDateClass = this.getDateClass(card);
@@ -81,6 +85,7 @@ class CardModal extends React.Component {
               style={{ height: 45 + "px" }}
               value={this.state.title}
               onChange={this.handleOnTitleChange}
+              onBlur={this.handleOnBlur}
             />
             <p>
               in list <a className="link">{this.props.list.title}</a>
