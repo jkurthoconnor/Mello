@@ -18,6 +18,7 @@ class ListCard extends React.Component {
   dueDate() {
     const card = this.props.card;
     const dateClass = this.getDateClass(card);
+    //console.log(dateClass);
     return card.due_date ? (
       <i className={"clock-icon sm-icon " + dateClass}>
         {moment(this.props.card.due_date).format("MMM D")}
@@ -26,14 +27,19 @@ class ListCard extends React.Component {
   }
 
   getDateClass(card) {
+    const diff =
+      (moment(card.due_date).toDate() - new Date()) / (1000 * 60 * 60 * 24);
+    console.log(diff);
     if (card.completed) {
       return "completed";
-    } else if (moment(card.due_date).isBetween(moment().subtract(2, "days"))) {
-      return "due-soon";
-    } else if (moment().isAfter(card.due_date)) {
+    } else if (diff < -1) {
       return "overdue";
+    } else if (diff < 0) {
+      return "overdue-recent";
+    } else if (diff < 1) {
+      return "due-soon";
     } else {
-      return "";
+      return "due-later";
     }
   }
 
