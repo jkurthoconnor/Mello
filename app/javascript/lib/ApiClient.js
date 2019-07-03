@@ -1,5 +1,5 @@
-import axios from 'axios';
-import * as routes from '../constants/ApiRoutes';
+import axios from "axios";
+import * as routes from "../constants/ApiRoutes";
 
 function logError(errorResponse) {
   const response = errorResponse.response;
@@ -7,7 +7,7 @@ function logError(errorResponse) {
   if (response && response.data && response.data.error) {
     console.error(`HTTP Error: ${response.data.error}`);
   } else {
-    console.error('Error: ', errorResponse);
+    console.error("Error: ", errorResponse);
   }
 }
 
@@ -15,8 +15,8 @@ function unwrapData(response) {
   return response.data;
 }
 
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+axios.defaults.headers.common["Accept"] = "application/json";
 
 const apiClient = {
   getBoards: function(callback) {
@@ -29,7 +29,7 @@ const apiClient = {
 
   createBoard: function(board, callback) {
     return axios
-      .post(routes.CREATE_BOARD_URL, {board})
+      .post(routes.CREATE_BOARD_URL, { board })
       .then(unwrapData)
       .then(callback)
       .catch(logError);
@@ -45,7 +45,7 @@ const apiClient = {
 
   createList: function(boardId, list, callback) {
     return axios
-      .post(routes.CREATE_LIST_URL, {board_id: boardId, list: list})
+      .post(routes.CREATE_LIST_URL, { board_id: boardId, list: list })
       .then(unwrapData)
       .then(callback)
       .catch(logError);
@@ -53,7 +53,7 @@ const apiClient = {
 
   updateListTitle: function(listId, title, callback) {
     return axios
-      .put(routes.UPDATE_LIST_URL.concat(listId), {title: title})
+      .put(routes.UPDATE_LIST_URL.concat(listId), { title: title })
       .then(unwrapData)
       .then(callback)
       .catch(logError);
@@ -61,11 +61,19 @@ const apiClient = {
 
   createCard: function(listId, card, callback) {
     return axios
-      .post(routes.CREATE_CARD_URL, {list_id: listId, card: card})
+      .post(routes.CREATE_CARD_URL, { list_id: listId, card: card })
       .then(unwrapData)
       .then(callback)
       .catch(logError);
   },
+
+  updateCard: function(cardId, attributes, callback) {
+    return axios
+      .put(`/api/cards/${cardId}`, { card: attributes })
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  }
 };
 
 export default apiClient;
