@@ -18,7 +18,7 @@ class ListCard extends React.Component {
   dueDate() {
     const card = this.props.card;
     const dateClass = this.getDateClass(card);
-    //console.log(dateClass);
+
     return card.due_date ? (
       <i className={"clock-icon sm-icon " + dateClass}>
         {moment(this.props.card.due_date).format("MMM D")}
@@ -29,7 +29,6 @@ class ListCard extends React.Component {
   getDateClass(card) {
     const diff =
       (moment(card.due_date).toDate() - new Date()) / (1000 * 60 * 60 * 24);
-    console.log(diff);
     if (card.completed) {
       return "completed";
     } else if (diff < -1) {

@@ -10,7 +10,6 @@ class CardModal extends React.Component {
   dueDate() {
     const card = this.props.card;
     const dateClass = this.getDateClass(card);
-    //console.log(dateClass);
     return card.due_date ? (
       <i className={"clock-icon sm-icon " + dateClass}>
         {moment(this.props.card.due_date).format("MMM D")}

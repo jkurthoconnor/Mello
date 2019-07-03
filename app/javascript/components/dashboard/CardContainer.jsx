@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CardModal from "./CardModal";
+import * as actions from "../../actions/BoardActions";
 
 class CardContainer extends React.Component {
   static contextTypes = {
