@@ -12,6 +12,10 @@ class Api::CardsController < ApplicationController
     @card = Card.find(params[:id])
     @card.assign_attributes(card_params)
 
+    if @card.title_changed?
+      @card.actions.create!(description: "title changed")
+    end
+
     if @card.due_date_changed?
       if @card.due_date
         if @card.due_date_was

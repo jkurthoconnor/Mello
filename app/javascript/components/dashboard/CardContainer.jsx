@@ -17,12 +17,18 @@ class CardContainer extends React.Component {
     store.dispatch(actions.updateCard(card.id, attributes));
   };
 
-  render() {
+  handleGetCard = () => {
     const store = this.context.store;
-    const card = store
+    return store
       .getState()
       .cards.find(card => card.id === +this.props.match.params.id);
+  };
+
+  render() {
+    const store = this.context.store;
+    const card = this.handleGetCard();
     const list = store.getState().lists.find(list => list.id === card.list_id);
+    console.log(card);
 
     return (
       <CardModal
@@ -30,6 +36,7 @@ class CardContainer extends React.Component {
         list={list}
         boardId={list.board_id}
         onUpdateCard={this.handleUpdateCard}
+        onGetCard={this.handleGetCard}
       />
     );
   }

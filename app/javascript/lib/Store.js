@@ -1,15 +1,17 @@
-import {createStore as cs, applyMiddleware, compose} from 'redux';
-import ReduxThunk from 'redux-thunk';
+import { createStore as cs, applyMiddleware, compose } from "redux";
+import ReduxThunk from "redux-thunk";
 
-import boardsReducer from '../reducers/BoardsReducer';
-import listsReducer from '../reducers/ListsReducer';
-import cardsReducer from '../reducers/CardsReducer';
+import boardsReducer from "../reducers/BoardsReducer";
+import listsReducer from "../reducers/ListsReducer";
+import cardsReducer from "../reducers/CardsReducer";
+import actionsReducer from "../reducers/ActionsReducer";
 
 function reducer(state = {}, action) {
   return {
     boards: boardsReducer(state.boards, action),
     lists: listsReducer(state.lists, action),
     cards: cardsReducer(state.cards, action),
+    actions: actionsReducer(state.actions, action)
   };
 }
 
@@ -18,6 +20,6 @@ export function createStore(initialState = {}) {
   return cs(
     reducer,
     initialState,
-    composeEnhancers(applyMiddleware(ReduxThunk)),
+    composeEnhancers(applyMiddleware(ReduxThunk))
   );
 }

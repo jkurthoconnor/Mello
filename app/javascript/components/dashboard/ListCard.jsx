@@ -50,26 +50,28 @@ class ListCard extends React.Component {
     });
     return (
       <Link to={`/cards/${this.props.card.id}`}>
-        <div className="card-background">
-          <div className="card ">
-            <i className="edit-toggle edit-icon sm-icon"></i>
-            <div className="card-info">
-              {labels}
-              <p>{this.props.card.title}</p>
-            </div>
-            <div className="card-icons">
-              {this.dueDate()}
+        {this.props.card.archived ? null : (
+          <div className="card-background">
+            <div className="card ">
+              <i className="edit-toggle edit-icon sm-icon"></i>
+              <div className="card-info">
+                {labels}
+                <p>{this.props.card.title}</p>
+              </div>
+              <div className="card-icons">
+                {this.dueDate()}
 
-              {this.hasDescription() ? (
-                <i className="description-icon sm-icon"></i>
-              ) : null}
+                {this.hasDescription() ? (
+                  <i className="description-icon sm-icon"></i>
+                ) : null}
 
-              {this.hasComments() ? (
-                <i className="comment-icon sm-icon"></i>
-              ) : null}
+                {this.hasComments() ? (
+                  <i className="comment-icon sm-icon"></i>
+                ) : null}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </Link>
     );
   }

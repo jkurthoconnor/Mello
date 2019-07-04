@@ -51,6 +51,14 @@ class CardModal extends React.Component {
     }
   }
 
+  handleArchive = () => {
+    this.props.onUpdateCard({ archived: true });
+  };
+
+  handleToggleCompleted = () => {
+    this.props.onUpdateCard({ completed: !this.props.card.completed });
+  };
+
   handleOnTitleChange = e => {
     this.setState({
       title: e.target.value
@@ -63,8 +71,9 @@ class CardModal extends React.Component {
 
   render() {
     const card = this.props.card;
+    console.log(card.archived);
     const dueDateClass = this.getDateClass(card);
-    const labels = this.props.card.labels.map(label => (
+    const labels = card.labels.map(label => (
       <div className="member-container">
         <div className={`${label} label colorblindable`}></div>
       </div>
@@ -77,6 +86,12 @@ class CardModal extends React.Component {
           <Link to={`/boards/${this.props.boardId}`}>
             <i className="x-icon icon close-modal"></i>
           </Link>
+
+          {card.archived ? (
+            <div className="archived-banner">
+              <i className="file-icon icon"></i>This card is archived.
+            </div>
+          ) : null}
           <header>
             <i className="card-icon icon .close-modal"></i>
             <textarea
@@ -109,7 +124,8 @@ class CardModal extends React.Component {
                         id="dueDateCheckbox"
                         type="checkbox"
                         className="checkbox"
-                        checked=""
+                        defaultChecked={card.completed}
+                        onClick={this.handleToggleCompleted}
                       />
                       {card.due_date} <span>{this.dueDateStatus()}</span>
                     </div>
@@ -287,7 +303,7 @@ class CardModal extends React.Component {
                 <i className="check-icon sm-icon"></i>
               </li>
               <hr />
-              <li className="archive-button">
+              <li className="archive-button" onClick={this.handleArchive}>
                 <i className="file-icon sm-icon "></i>Archive
               </li>
             </ul>
