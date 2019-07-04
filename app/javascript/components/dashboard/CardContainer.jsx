@@ -8,6 +8,15 @@ class CardContainer extends React.Component {
     store: PropTypes.object.isRequired
   };
 
+  componentDidMount() {
+    let store = this.context.store;
+    this.unsubscribe = store.subscribe(() => this.forceUpdate());
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   handleUpdateCard = attributes => {
     const store = this.context.store;
     const card = store
