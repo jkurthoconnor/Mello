@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20190703173636) do
     t.string "labels", default: [], array: true
     t.text "description"
     t.integer "list_id"
-    t.integer "comments_count"
     t.boolean "completed", default: false
     t.boolean "archived", default: false
   end
