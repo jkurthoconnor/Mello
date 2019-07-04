@@ -4,7 +4,8 @@ import moment from "moment";
 
 class CardModal extends React.Component {
   state = {
-    title: this.props.card.title
+    title: this.props.card.title,
+    editFormOpen: false
   };
 
   dueDate() {
@@ -50,6 +51,12 @@ class CardModal extends React.Component {
       return "";
     }
   }
+
+  handleFormToggle = () => {
+    this.setState({
+      editFormOpen: !this.state.editFormOpen
+    });
+  };
 
   handleArchive = () => {
     this.props.onUpdateCard({ archived: true });
@@ -133,18 +140,43 @@ class CardModal extends React.Component {
                 </ul>
                 <form className="description">
                   <p>Description</p>
-                  <span id="description-edit" className="link">
-                    Edit
-                  </span>
-                  <p className="textarea-overlay">
-                    Cards have a symbol to indicate if they contain a
-                    description.
-                  </p>
-                  <p id="description-edit-options" className="hidden">
-                    You have unsaved edits on this field.{" "}
-                    <span className="link">View edits</span> -{" "}
-                    <span className="link">Discard</span>
-                  </p>
+
+                  {this.state.editFormOpen ? (
+                    <div>
+                      <textarea class="textarea-toggle" rows="1" autofocus>
+                        Cards have a symbol to indicate if they contain a
+                        description.
+                      </textarea>
+                      <div>
+                        <div class="button" value="Save">
+                          Save
+                        </div>
+                        <i
+                          class="x-icon icon"
+                          onClick={this.handleFormToggle}
+                        ></i>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <span
+                        id="description-edit"
+                        className="link"
+                        onClick={this.handleFormToggle}
+                      >
+                        Edit
+                      </span>
+                      <p className="textarea-overlay">
+                        Cards have a symbol to indicate if they contain a
+                        description.
+                      </p>
+                      <p id="description-edit-options" className="hidden">
+                        You have unsaved edits on this field.{" "}
+                        <span className="link">View edits</span> -{" "}
+                        <span className="link">Discard</span>
+                      </p>
+                    </div>
+                  )}
                 </form>
               </li>
               <li className="comment-section">
