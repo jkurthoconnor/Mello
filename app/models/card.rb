@@ -1,7 +1,8 @@
 class Card < ApplicationRecord
   validates_presence_of :title, allow_blank: false
   belongs_to :list, foreign_key: 'list_id'
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :actions, dependent: :destroy
   delegate :board_id, to: :list
 
   def attributes
