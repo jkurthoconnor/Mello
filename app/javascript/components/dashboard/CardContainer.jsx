@@ -45,11 +45,12 @@ class CardContainer extends React.Component {
     const store = this.context.store;
     const card = this.handleGetCard();
     const list = store.getState().lists.find(list => list.id === card.list_id);
-    console.log(card);
+    const comments = store.getState().comments.filter(comment => comment.card_id === card.id)
 
     return (
       <CardModal
         card={card}
+        comments={comments}
         list={list}
         boardId={list.board_id}
         onUpdateCard={this.handleUpdateCard}
