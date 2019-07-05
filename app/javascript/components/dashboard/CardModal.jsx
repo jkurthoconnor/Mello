@@ -62,6 +62,12 @@ class CardModal extends React.Component {
     this.props.onUpdateCard({ archived: true });
   };
 
+  handleUnArchive = (e) => {
+    e.stopPropagation();
+    console.log('hello there')
+    this.props.onUpdateCard({ archived: false });
+  };
+
   handleToggleCompleted = () => {
     this.props.onUpdateCard({ completed: !this.props.card.completed });
   };
@@ -335,9 +341,16 @@ class CardModal extends React.Component {
                 <i className="check-icon sm-icon"></i>
               </li>
               <hr />
+              { card.archived ?
+              <div>
+                <li className="unarchive-button" onClick={this.handleUnArchive}><i className="send-icon sm-icon"></i>Send to board</li>
+                <li className="red-button"><i className="minus-icon sm-icon"></i>Delete</li>
+              </div>
+              :
               <li className="archive-button" onClick={this.handleArchive}>
                 <i className="file-icon sm-icon "></i>Archive
               </li>
+            }
             </ul>
             <ul className="light-list">
               <li className="not-implemented">Share and more...</li>
