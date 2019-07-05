@@ -73,6 +73,22 @@ const apiClient = {
       .then(unwrapData)
       .then(callback)
       .catch(logError);
+  },
+
+  createComment: function(cardId, comment, callback) {
+    return axios
+      .post(`/api/comments`, { card_id: cardId, comment: comment })
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
+  },
+
+  getCard: function(cardId, callback) {
+    return axios
+      .get(`/api/cards/${cardId}`)
+      .then(unwrapData)
+      .then(callback)
+      .catch(logError);
   }
 };
 

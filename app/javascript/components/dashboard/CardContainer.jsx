@@ -17,6 +17,14 @@ class CardContainer extends React.Component {
     this.unsubscribe();
   }
 
+  handleFetchCard = id => {
+    this.context.store.dispatch(actions.fetchCard(id))
+  }
+
+  handleCreateComment = (id, comment) => {
+    this.context.store.dispatch(actions.createComment(id, comment))
+  }
+
   handleUpdateCard = attributes => {
     const store = this.context.store;
     const card = store
@@ -46,6 +54,8 @@ class CardContainer extends React.Component {
         boardId={list.board_id}
         onUpdateCard={this.handleUpdateCard}
         onGetCard={this.handleGetCard}
+        onFetchCard={this.handleFetchCard}
+        onCreateComment={this.handleCreateComment}
       />
     );
   }

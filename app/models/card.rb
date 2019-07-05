@@ -6,7 +6,7 @@ class Card < ApplicationRecord
   delegate :board_id, to: :list
 
   def attributes
-    super.merge('board_id' => board_id, 'comments_count'=> comments_count)
+    super.merge('board_id' => board_id, 'comments_count'=> comments_count, 'comments' => self.comments)
   end
 
   def comments_count

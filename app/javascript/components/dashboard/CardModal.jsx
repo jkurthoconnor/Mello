@@ -6,8 +6,13 @@ class CardModal extends React.Component {
   state = {
     title: this.props.card.title,
     editFormOpen: false,
-    description: this.props.card.description || ""
+    description: this.props.card.description || "",
+    comment: ""
   };
+
+  componentDidMount() {
+    this.props.onFetchCard(this.props.card.id)
+  }
 
   dueDate() {
     const card = this.props.card;
@@ -89,13 +94,26 @@ class CardModal extends React.Component {
     })
   }
 
+  handleCommentChange = (e) => {
+    this.setState({
+      comment: e.target.value,
+    })
+  }
+
   handleDescriptionSave = (e) => {
     this.props.onUpdateCard({ description: this.state.description});
   }
 
+ handleCommentSave = (e) => {
+    this.props.onCreateComment(this.props.card.id, {text: this.state.comment})
+    this.setState({
+      comment: ""
+    });
+  }
+
   render() {
     const card = this.props.card;
-    console.log(card.archived);
+    console.log(card.comments);
     const dueDateClass = this.getDateClass(card);
     const labels = card.labels.map(label => (
       <div className="member-container">
@@ -206,7 +224,8 @@ class CardModal extends React.Component {
                         required=""
                         rows="1"
                         placeholder="Write a comment..."
-                        value=""
+                        value={this.state.comment}
+                        onChange={this.handleCommentChange}
                       />
                       <div>
                         <a className="light-button card-icon sm-icon"></a>
@@ -219,6 +238,7 @@ class CardModal extends React.Component {
                           type="submit"
                           className="button not-implemented"
                           value="Save"
+                          onClick={this.handleCommentSave}
                         />
                       </div>
                     </label>
@@ -248,7 +268,8 @@ class CardModal extends React.Component {
                         <textarea
                           required=""
                           rows="1"
-                          value="The activities have not been implemented yet."
+                          value={"The activities have not been implemented yet."}
+                          
                         />
                         <div>
                           <a className="light-button card-icon sm-icon"></a>
@@ -294,7 +315,7 @@ class CardModal extends React.Component {
                         <textarea
                           required=""
                           rows="1"
-                          value="Example of a comment"
+                          value={"Example of a comment"}
                         />
                         <div>
                           <a className="light-button card-icon sm-icon"></a>
