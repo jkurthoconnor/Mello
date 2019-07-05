@@ -5,7 +5,8 @@ import moment from "moment";
 class CardModal extends React.Component {
   state = {
     title: this.props.card.title,
-    editFormOpen: false
+    editFormOpen: false,
+    description: this.props.card.description || ""
   };
 
   dueDate() {
@@ -82,6 +83,12 @@ class CardModal extends React.Component {
     this.props.onUpdateCard({ title: this.state.title });
   };
 
+  handleDescriptionChange = (e) => {
+    this.setState({
+      description: e.target.value,
+    })
+  }
+
   render() {
     const card = this.props.card;
     console.log(card.archived);
@@ -149,9 +156,8 @@ class CardModal extends React.Component {
 
                   {this.state.editFormOpen ? (
                     <div>
-                      <textarea class="textarea-toggle" rows="1" autofocus>
-                        Cards have a symbol to indicate if they contain a
-                        description.
+                      <textarea class="textarea-toggle" rows="1" autofocus onChange={this.handleDescriptionChange}>
+                        {this.state.description}
                       </textarea>
                       <div>
                         <div class="button" value="Save">
@@ -173,8 +179,7 @@ class CardModal extends React.Component {
                         Edit
                       </span>
                       <p className="textarea-overlay">
-                        Cards have a symbol to indicate if they contain a
-                        description.
+                        {this.state.description}
                       </p>
                       <p id="description-edit-options" className="hidden">
                         You have unsaved edits on this field.{" "}
