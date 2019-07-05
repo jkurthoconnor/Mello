@@ -89,6 +89,10 @@ class CardModal extends React.Component {
     })
   }
 
+  handleDescriptionSave = (e) => {
+    this.props.onUpdateCard({ description: this.state.description});
+  }
+
   render() {
     const card = this.props.card;
     console.log(card.archived);
@@ -160,7 +164,7 @@ class CardModal extends React.Component {
                         {this.state.description}
                       </textarea>
                       <div>
-                        <div class="button" value="Save">
+                        <div class="button" value="Save" onClick={this.handleDescriptionSave}>
                           Save
                         </div>
                         <i
